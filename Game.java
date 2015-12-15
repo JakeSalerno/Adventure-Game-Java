@@ -40,7 +40,7 @@ public class Game
 			
 			
 			System.out.println("You are fighting a "+enemy);
-			
+			WOW:
 			while (monsterHealth>0)
 			{
 				System.out.println("Your health is: "+playerHealth);
@@ -64,6 +64,7 @@ public class Game
 					
 					System.out.println("You hit the enemy for "+playerDamage+", it now has "+monsterHealth+" health.");
 					System.out.println("The enemy hit you for  "+damageTaken+", you now have "+playerHealth+" health.");
+					System.out.println("-------------------------------------------------------------------------");
 					
 					if(playerHealth<=0)
 					{
@@ -74,6 +75,7 @@ public class Game
 				else if(input.equals("2"))
 				{
 					System.out.println("You have decided to run away from battle!");
+					System.out.println("-------------------------------------------------------------------------");
 					continue GAME;
 				}
 				else if(input.equals("3"))
@@ -81,13 +83,15 @@ public class Game
 					if(healthpotioncount>=1)
 					{
 						System.out.println("You have decided to use a potion!");
+						System.out.println("-------------------------------------------------------------------------");
 						playerHealth = playerHealth+healthpotion;
 						healthpotioncount= healthpotioncount-1;
 					}
 					else
 					{
 						System.out.println("You dont have enough health potions.");
-						continue GAME;
+						System.out.println("-------------------------------------------------------------------------");
+						continue WOW;
 					}
 					
 			
@@ -97,6 +101,7 @@ public class Game
 					if(specialattackcharge>=1)
 					{
 						System.out.println("You have decided to use your special attack.");
+						System.out.println("-------------------------------------------------------------------------");
 						monsterHealth=monsterHealth-specialattack;
 						specialattackcharge=specialattackcharge-1;
 						int damageTaken = rand.nextInt(maxMonsterDamage);
@@ -104,10 +109,11 @@ public class Game
 						System.out.println("You hit the enemy for "+specialattack+", it now has "+monsterHealth+" health.");
 						System.out.println("The enemy hit you for  "+damageTaken+", you now have "+playerHealth+" health.");
 					}
-					if(specialattackcharge<=0)
+					else
 					{
 						System.out.println("You dont have anymore charges!");
-						continue GAME;
+						System.out.println("-------------------------------------------------------------------------");
+						continue WOW;
 					}
 					
 					
@@ -115,6 +121,7 @@ public class Game
 				else
 				{
 					System.out.println("Invalid input");
+					System.out.println("-------------------------------------------------------------------------");
 				}
 			}
 			if(playerHealth<=0)
@@ -123,7 +130,7 @@ public class Game
 				break;
 			}
 			
-			System.out.println("----------------------------------------------");
+			
 			System.out.println("You have now defeated a "+enemy);
 			System.out.println("You have "+playerHealth+" health left.");
 			healthpotioncount=healthpotioncount+1;
@@ -138,7 +145,7 @@ public class Game
 				skill+=1;
 				maxPlayerDamage=maxPlayerDamage+25;
 				
-				System.out.println("----------------------------------------------");
+				
 				System.out.println("With all this fighting experience, you have unlocked a new skillset. The maximum damage you can do is now "+maxPlayerDamage+", and you now have a special attack that does 50 damage.");
 				System.out.println("----------------------------------------------");
 			}
