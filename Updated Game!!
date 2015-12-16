@@ -198,7 +198,7 @@ public class Game
 							if(coins>=5)
 							{
 								coins=coins-5;
-								specialattackcharge=specialattackcharge+3;
+								specialattackcharge=3;
 								System.out.println("You have bought a full skill recharge for five coins.");
 								System.out.println("You now have "+specialattackcharge+" charges for your special attack.");
 								System.out.println("You now have "+coins+" coins.");
