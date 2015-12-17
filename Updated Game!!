@@ -25,6 +25,7 @@ public class Game
 		boolean running = true;
 		int skill = 0;
 		int coins = 0;
+		int maxcoinsadd=5;
 		System.out.println("Welcome to the game!");
 		GAME:
 		while(running)
@@ -95,6 +96,11 @@ public class Game
 						playerHealth= playerHealth-damageTaken;
 						System.out.println("You hit the enemy for "+specialattack+", it now has "+monsterHealth+" health.");
 						System.out.println("The enemy hit you for  "+damageTaken+", you now have "+playerHealth+" health.");
+						if(playerHealth<=0)
+						{
+							System.out.println("You have died.");
+							break;
+						}
 					}
 					else
 					{
@@ -123,7 +129,8 @@ public class Game
 			System.out.println("The monsters are now tougher");
 			wins++;
 			System.out.println("You have won "+wins+" times");
-			coins=coins +5;
+			int coinsadd= rand.nextInt(maxcoinsadd);
+			coins=coins+coinsadd;
 			System.out.println("You have "+coins+" coins.");
 			if(wins==3)
 			{
@@ -167,8 +174,8 @@ public class Game
 					{	
 						System.out.println("You have decided to go to the shop, here are your options.");
 						System.out.println("You have "+coins+" coins.");
-						System.out.println("1.Buy Potion");
-						System.out.println("2.Buy skill recharge");
+						System.out.println("1.Buy Potion for 5 coins");
+						System.out.println("2.Buy skill recharge for 5 coins");
 						input = keyboard.nextLine();
 						if(!input.equals("1")&&!input.equals("2"))
 						{
@@ -216,4 +223,3 @@ public class Game
 		}
 		}
 }
-
