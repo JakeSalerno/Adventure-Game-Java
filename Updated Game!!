@@ -9,12 +9,9 @@ public class Game
 	{
 		Scanner keyboard = new Scanner(System.in);
 		Random rand = new Random();
-		
-		//Enemies
 		String enemy = "Monster";
 		int maxMonsterHealth = 100;
 		int maxMonsterDamage = 25;
-		//Player
 		int playerHealth = 100;
 		int maxPlayerDamage = 50;
 		int healthpotioncount= 3;
@@ -26,6 +23,7 @@ public class Game
 		int skill = 0;
 		int coins = 0;
 		int maxcoinsadd=5;
+		int attack=0;
 		System.out.println("Welcome to the game!");
 		GAME:
 		while(running)
@@ -40,8 +38,19 @@ public class Game
 				System.out.println("Monster health is: "+monsterHealth);
 				System.out.println("Here are your options: ");
 				System.out.println("1.Attack");
-				System.out.println("2.Run");
-				System.out.println("3.Use Health Potion. You have "+healthpotioncount+" health potions left.");
+				if(attack==0)
+				{
+					System.out.println("2.Run");
+				}
+				if(attack==0)
+				{
+					System.out.println("3.Use Health Potion. You have "+healthpotioncount+" health potions left.");
+				}
+				if(attack==1)
+				{
+					System.out.println("2.Use Health Potion. You have "+healthpotioncount+" health potions left.");
+				}
+				
 				if(skill==1)
 				{
 					System.out.println("4.SPECIAL ATTACK--"+specialattackcharge+" charges left.");
@@ -56,19 +65,20 @@ public class Game
 					System.out.println("You hit the enemy for "+playerDamage+", it now has "+monsterHealth+" health.");
 					System.out.println("The enemy hit you for  "+damageTaken+", you now have "+playerHealth+" health.");
 					System.out.println("-------------------------------------------------------------------------");
+					attack=1;
 					if(playerHealth<=0)
 					{
 						System.out.println("You have died.");
 						break;
 					}
 				}
-				else if(input.equals("2"))
+				else if(attack==0&&input.equals("2"))
 				{
 					System.out.println("You have decided to run away from battle!");
 					System.out.println("-------------------------------------------------------------------------");
 					continue GAME;
 				}
-				else if(input.equals("3"))
+				else if(input.equals("3")||attack==1&&input.equals("2"))
 				{
 					if(healthpotioncount>=1)
 					{
@@ -84,7 +94,7 @@ public class Game
 						continue WOW;
 					}
 				}
-				else if(input.equals("4"))
+				else if(skill==1&&input.equals("4"))
 				{
 					if(specialattackcharge>=1)
 					{
@@ -132,6 +142,7 @@ public class Game
 			int coinsadd= rand.nextInt(maxcoinsadd);
 			coins=coins+coinsadd;
 			System.out.println("You have "+coins+" coins.");
+			attack=0;
 			if(wins==3)
 			{
 				skill+=1;
