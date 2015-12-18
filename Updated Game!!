@@ -69,6 +69,7 @@ public class Game
 					if(playerHealth<=0)
 					{
 						System.out.println("You have died.");
+						running=false;
 						break;
 					}
 				}
@@ -78,7 +79,7 @@ public class Game
 					System.out.println("-------------------------------------------------------------------------");
 					continue GAME;
 				}
-				else if(input.equals("3")||attack==1&&input.equals("2"))
+				else if(input.equals("3")&&attack==0||attack==1&&input.equals("2"))
 				{
 					if(healthpotioncount>=1)
 					{
@@ -109,6 +110,7 @@ public class Game
 						if(playerHealth<=0)
 						{
 							System.out.println("You have died.");
+							running=false;
 							break;
 						}
 					}
@@ -129,6 +131,7 @@ public class Game
 			{
 				System.out.println("You have died in battle.");
 				System.out.println("You have won "+wins+" times");
+				running=false;
 				break;
 			}
 			System.out.println("You have now defeated a "+enemy);
@@ -163,8 +166,8 @@ public class Game
 			{
 				System.out.println("----------------------------------------------");
 				System.out.println("What now?");
-				System.out.println("1.Continue on");
-				System.out.println("2.Leave");
+				System.out.println("1.Continue on in adventures");
+				System.out.println("2.Leave game");
 				System.out.println("3.Store");
 				String input = keyboard.nextLine();
 				while(!input.equals("1")&&!input.equals("2")&&!input.equals("3"))
@@ -180,6 +183,7 @@ public class Game
 					else if (input.equals("2"))
 					{
 						System.out.println("Good job, hope you play again");
+						running=false;
 						break;
 					}
 					else if(input.equals("3"))
@@ -189,9 +193,11 @@ public class Game
 						System.out.println("1.Buy: Potion for 5 coins");
 						System.out.println("2.Buy: Skill recharge for 5 coins");
 						System.out.println("3.Buy: More attack damage (+5) for 10 coins");
-						System.out.println("4.Leave store");
+						System.out.println("4.Buy: Full health restoration for 25 coins");
+						System.out.println("5.Leave store");
+						
 						input = keyboard.nextLine();
-						if(!input.equals("1")&&!input.equals("2")&&!input.equals("3")&&!input.equals("4"))
+						if(!input.equals("1")&&!input.equals("2")&&!input.equals("3")&&!input.equals("4")&&!input.equals("5"))
 						{
 							System.out.println("Invalid.");
 							input = keyboard.nextLine();
@@ -250,8 +256,22 @@ public class Game
 						}
 						else if (input.equals("4"))
 						{
+							if(coins>=25&&playerHealth<=99)
+							{
+								playerHealth=100;
+								System.out.println("Your health is now "+playerHealth+".");
+							}
+							else
+							{
+								System.out.println("Sorry, your health is at or above its maximum or you do not have enough coins.");
+								continue HEY;
+							}
+						}
+						else if (input.equals("5"))
+						{
 							continue HEY;
 						}
+						
 					}
 					}
 		}
